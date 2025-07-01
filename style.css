@@ -1,0 +1,410 @@
+/* Global Styles */
+:root {
+    --dark-bg: #0a0a0a; /* Very dark almost black */
+    --darker-bg: #1a1a1a; /* Slightly lighter dark for gradients */
+    --light-text: #e0e0e0; /* Light gray for general text */
+    --gray-text: #a0a0a0; /* Darker gray for secondary text */
+    --teal-primary: #20c997; /* Bright teal for accents */
+    --teal-dark: #1a9e7d; /* Darker teal for hover states */
+    --teal-light: #4cddb2; /* Lighter teal for subtle highlights */
+    --purple-accent: #6f42c1; /* Complementary purple for background shapes */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utility Classes (mimicking Tailwind where Bootstrap doesn't have direct equivalents) */
+.bg-dark-custom {
+    background-color: var(--dark-bg);
+}
+
+.bg-darker-custom {
+    background-color: var(--darker-bg);
+}
+
+.text-light-custom {
+    color: var(--light-text);
+}
+
+.text-gray-custom {
+    color: var(--gray-text);
+}
+
+.text-teal-custom {
+    color: var(--teal-primary);
+}
+
+.border-teal-custom {
+    border-color: var(--teal-primary) !important;
+}
+
+.bg-gradient-dark-to-darker {
+    background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
+}
+
+.rounded-3xl {
+    border-radius: 1.5rem !important; /* Custom large border-radius */
+}
+
+.rounded-2xl {
+    border-radius: 1rem !important;
+}
+
+.rounded-xl {
+    border-radius: 0.75rem !important;
+}
+
+.rounded-bottom-3xl {
+    border-bottom-left-radius: 1.5rem !important;
+    border-bottom-right-radius: 1.5rem !important;
+}
+
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Navigation Specifics */
+.bg-dark-transparent {
+    background-color: rgba(10, 10, 10, 0.8); /* Semi-transparent dark */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+    padding-bottom: 0.5rem; /* Space for underline */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--teal-primary);
+    transition: width 0.3s ease-out;
+}
+
+.navbar-nav .nav-link.hover-underline-animation:hover::after,
+.navbar-nav .nav-link.hover-underline-animation.active::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 56px; /* Adjust for fixed navbar height */
+}
+
+/* Removed background-image from .hero-bg */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Removed background-image property */
+    filter: grayscale(50%) blur(3px);
+    transform: scale(1.05);
+    z-index: -2;
+}
+
+/* New style for the hero image <img> tag */
+.hero-bg-img {
+    filter: grayscale(50%) blur(3px); /* Apply the same filter as the original background */
+    transform: scale(1.05); /* Apply the same scale as the original background */
+    z-index: -2; /* Ensure it's behind the overlay and content */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.7), rgba(26, 26, 26, 0.6), rgba(10, 10, 10, 0.7));
+    z-index: -1;
+}
+
+.hero-section .display-3 {
+    font-size: 3.5rem; /* Adjust for Bootstrap's default display sizes */
+}
+
+@media (min-width: 768px) {
+    .hero-section .display-3 {
+        font-size: 5rem;
+    }
+}
+
+.btn-teal {
+    background-color: var(--teal-primary);
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: 2px solid var(--teal-primary);
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-teal:hover {
+    background-color: var(--teal-dark);
+    border-color: var(--teal-dark);
+    transform: scale(1.05);
+    color: white; /* Keep text white on hover */
+}
+
+/* Custom button hover effect (mimicking React version's gradient overlay) */
+.btn-teal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--teal-light), var(--teal-dark));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.btn-teal:hover::before {
+    opacity: 1;
+}
+
+.btn-teal span {
+    position: relative;
+    z-index: 1;
+}
+
+/* About Section */
+.transform-rotate-3 {
+    transform: rotate(3deg);
+}
+
+.hover-rotate-0:hover {
+    transform: rotate(0deg);
+}
+
+.transition-transform {
+    transition: transform 0.5s ease-in-out;
+}
+
+.w-24 { width: 6rem; } /* Custom width for circle */
+.h-24 { height: 6rem; } /* Custom height for circle */
+.mb-n4 { margin-bottom: -1rem !important; } /* Negative margin for overlap */
+.me-n4 { margin-right: -1rem !important; } /* Negative margin for overlap */
+
+
+/* Classes Section */
+.underline-teal {
+    position: absolute;
+    bottom: -10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6rem; /* Equivalent to w-24 */
+    height: 0.5rem; /* Equivalent to h-2 */
+    background-color: var(--teal-primary);
+    border-radius: 9999px; /* rounded-full */
+}
+
+.class-card {
+    background-color: #1f2937; /* Equivalent to gray-800 */
+    border-radius: 1.5rem; /* rounded-3xl */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2); /* shadow-xl */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    border-top: 4px solid rgba(32, 201, 151, 0.7); /* border-t-4 border-teal-600 border-opacity-70 */
+    border-left: 4px solid rgba(32, 201, 151, 0.7); /* border-l-4 border-teal-600 border-opacity-70 */
+}
+
+.class-card:hover {
+    transform: scale(1.05);
+}
+
+.class-card img {
+    height: 16rem; /* h-64 */
+    object-fit: cover;
+    object-position: center;
+    transition: brightness 0.3s ease;
+}
+
+.class-card:hover img {
+    filter: brightness(0.9);
+}
+
+.class-card .card-body h3 {
+    color: var(--teal-primary);
+    font-size: 2rem; /* text-3xl */
+    font-weight: bold;
+}
+
+.class-card .card-body p {
+    color: var(--gray-text); /* text-gray-300 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.class-card .card-body ul {
+    list-style: none;
+    padding: 0;
+    color: var(--gray-text); /* text-gray-400 */
+}
+
+.class-card .card-body ul strong {
+    color: var(--teal-primary);
+}
+
+.class-card .features-badge {
+    background-color: var(--teal-dark); /* bg-teal-700 */
+    color: #e2e8f0; /* text-teal-100 */
+    padding: 0.25rem 0.75rem; /* px-3 py-1 */
+    border-radius: 9999px; /* rounded-full */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+}
+
+/* New CSS for Book Now icons */
+.book-now-icon {
+    width: 1.25rem; /* w-5 */
+    height: 1.25rem; /* h-5 */
+    margin-left: 0.5rem; /* space-x-2 equivalent for icon */
+}
+
+/* Testimonials Section */
+.testimonial-card {
+    background-color: #1f2937; /* Equivalent to gray-800 */
+    border-radius: 1.5rem; /* rounded-3xl */
+    padding: 2rem; /* p-8 */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2); /* shadow-xl */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #374151; /* border border-gray-700 */
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px); /* hover:translate-y-2 */
+}
+
+.testimonial-card img {
+    width: 6rem; /* w-24 */
+    height: 6rem; /* h-24 */
+    border-radius: 9999px; /* rounded-full */
+    overflow: hidden;
+    margin-bottom: 1.5rem; /* mb-6 */
+    border: 4px solid var(--teal-primary); /* border-4 border-teal-500 */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2); /* shadow-lg */
+    object-fit: cover;
+}
+
+.testimonial-card p.italic {
+    font-style: italic;
+    font-size: 1.25rem; /* text-xl */
+    color: var(--gray-text); /* text-gray-300 */
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.testimonial-card p.author {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: var(--teal-primary);
+}
+
+/* Contact Section */
+.form-control {
+    background-color: #374151; /* bg-gray-700 */
+    border: 1px solid #4b5563; /* border border-gray-600 */
+    color: var(--light-text);
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 0.75rem 1.25rem; /* px-5 py-3 */
+}
+
+.form-control::placeholder {
+    color: #9ca3af; /* placeholder-gray-400 */
+}
+
+.form-control:focus {
+    background-color: #374151; /* Keep background on focus */
+    border-color: var(--teal-primary);
+    box-shadow: 0 0 0 0.25rem rgba(32, 201, 151, 0.5); /* focus:ring-2 focus:ring-teal-500 */
+    color: var(--light-text);
+}
+
+textarea.form-control {
+    resize: vertical; /* resize-y */
+}
+
+/* Animations */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0; /* Hidden by default */
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+/* Responsive adjustments for Bootstrap's default spacing */
+.py-5 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+.py-md-5 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+.py-lg-6 { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+
+/* General spacing and alignment adjustments */
+.space-y-3 > * + *,
+.space-y-4 > * + *,
+.space-y-8 > * + * {
+    margin-top: 1rem; /* Default spacing */
+}
+
+.space-y-3 > * + * { margin-top: 0.75rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.space-y-8 > * + * { margin-top: 2rem; }
+
+.space-x-3 > * + * { margin-left: 0.75rem; }
+.space-x-4 > * + * { margin-left: 1rem; }
+.space-x-6 > * + * { margin-left: 1.5rem; }
+.space-x-8 > * + * { margin-left: 2rem; }
+.space-x-12 > * + * { margin-left: 3rem; }
+
+/* Custom width/height for SVG icons */
+.w-6 { width: 1.5rem; }
+.h-6 { height: 1.5rem; }
+.w-8 { width: 2rem; }
+.h-8 { height: 2rem; }
